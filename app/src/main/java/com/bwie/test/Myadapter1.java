@@ -1,9 +1,6 @@
 package com.bwie.test;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
-import android.sax.StartElementListener;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,14 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dell on 2017/9/18.
+ * Created by dell on 2017/9/20.
  */
-public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MyAdapter1 extends RecyclerView.Adapter{
     Context context;
-    List<StoriesBean> list;
+    List<TopStoriesBean> list;
     private final DisplayImageOptions options;
     private OnitemLongdianji onitemLongdianji;
-    public MyAdapter(Context context, List<StoriesBean> list) {
+    public MyAdapter1(Context context, List<TopStoriesBean> list) {
         this.context = context;
         this.list = list;
         options = new DisplayImageOptions.Builder()
@@ -49,9 +45,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final TestViewHolder tHolder = (TestViewHolder) holder;
         tHolder.tv.setText(list.get(position).getTitle());
-        ImageLoader.getInstance().displayImage(list.get(position).getImages().get(0),((TestViewHolder) holder).img);
+        ImageLoader.getInstance().displayImage(list.get(position).getImage(),((TestViewHolder) holder).img);
         tHolder.ll.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
+            @Override
             public boolean onLongClick(View view) {
                 onitemLongdianji.onLong(view,position);
                 return true;
@@ -77,7 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public TestViewHolder(View itemView) {
             super(itemView);
-      tv=itemView.findViewById(R.id.tv);
+            tv=itemView.findViewById(R.id.tv);
             img=itemView.findViewById(R.id.img);
             ll=itemView.findViewById(R.id.ll);
         }
